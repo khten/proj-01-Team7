@@ -1,9 +1,13 @@
 package com.revature.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.revature.models.Employee;
 
+//servlet->service->service->
 public class EmployeeDao {
 
 	//CRUD Methods
@@ -19,18 +23,21 @@ public class EmployeeDao {
 		//grab session obj
 		
 		
-		//begin tx
+		//begin tx  //pull from hibernate
 		Transaction tx = ses.beginTransaction();
 			
 		//capture pk when session save() is called
-		int pk = (int) ses.save(e);
+		int pk = (Integer) ses.save(e);
 		//return the pk
 		return pk;
 	}
 	
 	//Read all
 	public List<Employee> findAll(){
-		
+		Session session = HibernateUtil.getSession();
+		//make an HQL statment   (Hibernate Query Language:  odd mix of oop and native sql
+		List<Employee> emps = ses.createQuery("from Employee", Employee.class).list();
+		return emps;
 	}
 	
 	public boolean delete() {
