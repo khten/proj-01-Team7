@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.models.Employee;
+import com.revature.util.HibernateUtil;
 
 //servlet->service->service->
 public class EmployeeDao {
@@ -19,9 +20,8 @@ public class EmployeeDao {
 	 */
 	//create
 	public int insert(Employee e) {
-		Session ses = HibernateUtil.getSession();
 		//grab session obj
-		
+		Session ses = HibernateUtil.getSession();
 		
 		//begin tx  //pull from hibernate
 		Transaction tx = ses.beginTransaction();
@@ -34,7 +34,7 @@ public class EmployeeDao {
 	
 	//Read all
 	public List<Employee> findAll(){
-		Session session = HibernateUtil.getSession();
+		Session ses = HibernateUtil.getSession();
 		//make an HQL statment   (Hibernate Query Language:  odd mix of oop and native sql
 		List<Employee> emps = ses.createQuery("from Employee", Employee.class).list();
 		return emps;
