@@ -43,8 +43,7 @@
       <property name="hibernate.show_sql">true</property>
       
       <!-- List of persistent classes -->
-      <mapping class = ""/>
-      <mapping class = ""/>
-      <mapping class = ""/>
+      <mapping class = "com.revature.models.Employee"/>
+      
    </session-factory>
 </hibernate-configuration>
